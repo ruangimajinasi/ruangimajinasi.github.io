@@ -15,7 +15,23 @@
 	margin-top:12px;
 	font-size:1em;
 }
-
+.telegram{
+	position:fixed;
+	z-index: 999;
+	width:40px;
+	height:40px;
+	bottom:110px;
+	left:10px;
+	background-color:#2d2c4d;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+.my-telegram{
+	margin-top:11px;
+	font-size:1.1em;
+}
 .blocks {
     display: flex;
     flex: 0 0 100%;
