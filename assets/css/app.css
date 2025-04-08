@@ -989,7 +989,7 @@ h1 {
 #judul-apk {
     height: 40px;
     text-align: center;
-    font-size: 16pt;
+    font-size: 12pt;
     line-clamp: 2
 }
 
@@ -1300,7 +1300,7 @@ video {
         margin-top: 5px;
         overflow: hidden;
         text-align: center;
-        font-size: 11pt;
+        font-size: 10pt;
         font-style: bold;
         text-overflow: ellipsis;
         display: -webkit-box;

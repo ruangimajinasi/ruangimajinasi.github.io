@@ -12,14 +12,19 @@ $(function () {
   className: 'paginationjs-theme-blue',
   dataSource: [
     {
-        "title": "Bling2 Live Mod",
-        "poster": "database/app/bling2.png",
-        "link": "https://apkadmin.com/hdqm6thjqmie/BLING2_MOD.apk.html"
+        "title": "HOT51 Pro",
+        "poster": "database/app/hot51.jpeg",
+        "link": "https://sfile.mobi/6zJb8T7Fscm"
     },
     {
         "title": "XNXX",
         "poster": "database/app/xnxx.png",
-        "link": "https://apkadmin.com/nf00cq4azd8y/XNXX_2022.apk.html"
+        "link": "https://sfile.mobi/9jst93RX3y1"
+    },
+    {
+        "title": "NekoPoi No Ads",
+        "poster": "database/app/nekopoi.jpg",
+        "link": "https://sfile.mobi/51Gpq4DvHa4"
     },
     {
         "title": "MLiveU - Hot Live Show Mod APK",
@@ -52,19 +57,9 @@ $(function () {
         "link": "https://droplink.co/CCLive_Mod"
     },
     {
-        "title": "NekoPoi Update Terbaru",
-        "poster": "database/app/nekopoi.jpg",
-        "link": "https://apkadmin.com/2o0bqkttilo4/NEKOPOI_V2.1.apk.html"
-    },
-    {
         "title": "TATA LIVE Unlocked Room",
         "poster": "database/app/tatalive.jpg",
         "link": "https://droplink.co/Tata_Live_Mod"
-    },
-    {
-        "title": "HOT51 Unlocked Room",
-        "poster": "database/app/hot51.jpg",
-        "link": "https://droplink.co/dPrVpt1"
     },
     {
         "title": "UF Live Unlocked Room",
@@ -751,7 +746,7 @@ $(function () {
   callback: function (data, pagination) {
       var dataHtml = '';
       $.each(data, function (index, item) {
-          dataHtml += '<div class="row sort-item"><a href="https://droplink.co/st?api=8b8315c6bc13a8684492a125284cd883e95e6373&url=' + item.link + '" style="color:black" onclick="ads()"><img src="' + item.poster + '" alt="' + item.title + '" width="100%" loading=lazy style="max-inline-size:100%;block-size: auto;height:100%;aspect-ratio: 1/1;object-fit:fill;border-radius:30px"></a><span id="judul-apk"><b>'+ item.title +'</b></span></div>';
+          dataHtml += '<div class="row sort-item"><a href="' + item.link + '" style="color:black" onclick="ads()"><img src="' + item.poster + '" alt="' + item.title + '" width="100%" loading=lazy style="max-inline-size:100%;block-size: auto;height:100%;aspect-ratio: 1/1;object-fit:fill;border-radius:30px"></a><span id="judul-apk"><b>'+ item.title +'</b></span></div>';
           });
 
           $("#data-apk").html(dataHtml);
