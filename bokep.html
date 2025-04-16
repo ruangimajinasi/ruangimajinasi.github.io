@@ -127,11 +127,21 @@
   </button>
 </div>
 
-<nav class="navbar fixed-bottom bg-light" style="height:94px">
-  <div id="iklan">
-    <div id="ad"></div>
+<nav class="navbar fixed-bottom bg-light" style="height:50px">
+  <div class="position-absolute top-0 start-50 translate-middle-x" style="background-color:transparent">
+    <script type="text/javascript">
+    	atOptions = {
+    		'key' : 'cc5a24cfa3c20a82918f308c0e6a59ad',
+    		'format' : 'iframe',
+    		'height' : 50,
+    		'width' : 320,
+    		'params' : {}
+    	};
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/cc5a24cfa3c20a82918f308c0e6a59ad/invoke.js"></script>
   </div>
 </nav>
+
 
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/jquery-1.12.4.min.js"></script>
@@ -142,20 +152,13 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js"></script>
-<script src="assets/js/search.js"></script>
-<script src="database/video.js"></script>
-<script src="database/ads.js"></script>
-<script src="database/shopee.js"></script>
-<script>
-  $(document).ready(function () {
-    $("#myAds").modal("show");
-  });
-</script>
+<script src="database/bokep.js"></script>
+
 <script>
   function randomBokep() {
-    let random = video[Math.floor(Math.random() * video.length)];
-    bokep.innerHTML = `<embed id="myplayer" width="100%" height="100%" src="https://dood.re/e/${random.link}" type="text/html"></embed><a href="whatsapp://send?text=https://dood.re/e/${random.link}" target="_blank" rel="nofollow"><button type="button" class="tombolshare"><img class="fa fa-share my-icon mt-1"></i></button></a><a href="https://droplink.co/st?api=8b8315c6bc13a8684492a125284cd883e95e6373&url=https://dood.re/d/${random.link}" target="_blank" onclick="ads()"><button type="button" class="tomboldownload"><img class="fa fa-download my-icon mt-1"></i></button></a><div class="id d-none"><p>${random.link}</p></div>`;
-    video.innerHTML = random.video;
+    let random = videos[Math.floor(Math.random() * videos.length)];
+    bokep.innerHTML = `<embed id="myplayer" width="100%" height="100%" src="https://doods.at/e/${random.link}" type="text/html"></embed><a href="whatsapp://send?text=https://doods.at/e/${random.link}" target="_blank" rel="nofollow"><button type="button" class="tombolshare"><img class="fa fa-share my-icon mt-1"></i></button></a><a href="https://doods.at/d/${random.link}" target="_blank" onclick="ads()"><button type="button" class="tomboldownload"><img class="fa fa-download my-icon mt-1"></i></button></a><div class="id d-none"><p>${random.link}</p></div>`;
+    videos.innerHTML = random.videos;
   }
   
   randomBokep();
