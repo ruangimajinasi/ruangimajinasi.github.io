@@ -147,13 +147,13 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js"></script>
-<script src="database/bokep.js"></script>
+<script src="database/video.js"></script>
 
 <script>
   function randomBokep() {
-    let random = videos[Math.floor(Math.random() * videos.length)];
+    let random = video[Math.floor(Math.random() * video.length)];
     bokep.innerHTML = `<embed id="myplayer" width="100%" height="100%" src="https://myvidplay.com/e/${random.link}" type="text/html"></embed><a href="whatsapp://send?text=https://myvidplay.com/e/${random.link}" target="_blank" rel="nofollow"><button type="button" class="tombolshare"><img class="fa fa-share my-icon mt-1"></i></button></a><a href="https://myvidplay.com/d/${random.link}" target="_blank" onclick="ads()"><button type="button" class="tomboldownload"><img class="fa fa-download my-icon mt-1"></i></button></a><div class="id d-none"><p>${random.link}</p></div>`;
-    videos.innerHTML = random.videos;
+    video.innerHTML = random.video;
   }
   
   randomBokep();
