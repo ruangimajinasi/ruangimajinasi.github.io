@@ -304,14 +304,14 @@
           currentPage = page;
           renderCurrentPageMovies();
           renderPagination();
-          window.scrollTo({ top: 400, behavior: 'smooth' });
+          window.scrollTo({ top: 160, behavior: 'smooth' });
         }
       });
     });
     const prevBtn = document.getElementById('prevPageBtn');
     const nextBtn = document.getElementById('nextPageBtn');
-    if (prevBtn) prevBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderCurrentPageMovies(); renderPagination(); window.scrollTo({ top: 400, behavior: 'smooth' }); } });
-    if (nextBtn) nextBtn.addEventListener('click', () => { if (currentPage < totalPages) { currentPage++; renderCurrentPageMovies(); renderPagination(); window.scrollTo({ top: 400, behavior: 'smooth' }); } });
+    if (prevBtn) prevBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderCurrentPageMovies(); renderPagination(); window.scrollTo({ top: 300, behavior: 'smooth' }); } });
+    if (nextBtn) nextBtn.addEventListener('click', () => { if (currentPage < totalPages) { currentPage++; renderCurrentPageMovies(); renderPagination(); window.scrollTo({ top: 300, behavior: 'smooth' }); } });
   }
   
   // Helper functions
