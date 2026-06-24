@@ -184,7 +184,7 @@
     
     const startIdx = (currentPage - 1) * itemsPerPage;
     const endIdx = startIdx + itemsPerPage;
-    const pageMovies = filteredMovies.slice(startIdx, endIdx);
+    const pageMovies = [...filteredMovies].reverse().slice(startIdx, endIdx);
     
     let cardsHTML = '';
     for (let movie of pageMovies) {
