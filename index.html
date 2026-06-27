@@ -194,7 +194,6 @@
         <div class="movie-card" onclick="ads()" data-id="${movie.id}">
           <div class="card-img">
             <img src="${imgSrc}" alt="${movie.title}" loading="lazy" onerror="this.src='https://placehold.co/600x900/252f3f/FFB347?text=NO+POSTER'">
-            <div class="rating-badge"><i class="fas fa-star"></i></div>
           </div>
           <div class="card-content">
             <div class="movie-title">${escapeHtml(movie.title)}</div>
@@ -282,8 +281,6 @@
     
     // next button
     paginationHTML += `<button class="page-btn" id="nextPageBtn" ${currentPage === totalPages ? 'disabled' : ''}>Next <i class="fas fa-chevron-right"></i></button>`;
-    paginationHTML += `<span class="page-indicator"><i class="fas fa-hourglass-half"></i> Halaman ${currentPage} dari ${totalPages}</span>`;
-    
     paginationContainer.innerHTML = paginationHTML;
     
     // event listeners for page buttons
