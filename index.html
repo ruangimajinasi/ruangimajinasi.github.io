@@ -194,12 +194,12 @@
         <div class="movie-card" onclick="ads()" data-id="${movie.id}">
           <div class="card-img">
             <img src="${imgSrc}" alt="${movie.title}" loading="lazy" onerror="this.src='https://placehold.co/600x900/252f3f/FFB347?text=NO+POSTER'">
-          </div>
-          <div class="card-content">
-            <div class="movie-title">${escapeHtml(movie.title)}</div>
-            <div class="action-buttons">
-              <button class="btn-watch watch-btn" data-id="${movie.id}"><i class="fas fa-play"></i> Tonton</button>
-              <button class="bookmark" data-id="${movie.id}"><i class="far fa-bookmark"></i></button>
+            <div class="card-content">
+              <div class="movie-title">${escapeHtml(movie.title)}</div>
+              <div class="action-buttons">
+                <button class="btn-watch watch-btn" data-id="${movie.id}"><i class="fas fa-play"></i> Tonton</button>
+                <button class="bookmark" data-id="${movie.id}"><i class="far fa-bookmark"></i></button>
+              </div>
             </div>
           </div>
         </div>
