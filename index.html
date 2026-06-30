@@ -140,7 +140,7 @@
   <!-- PAGINATION AREA -->
   <div id="paginationContainer" class="pagination-container"></div>
 
-  <a href="https://ruangimajinasi.github.io/db" class="floating-btn" aria-label="Buka database" target="_blank" rel="noopener noreferrer">
+  <a href="https://ruangimajinasi.github.io/db/index.html" class="floating-btn" aria-label="Buka database" target="_blank" rel="noopener noreferrer">
     <i class="fas fa-play"></i>
   </a>
 
@@ -345,7 +345,7 @@
   }
   
   function openVideoModal(movie) {
-    const embedUrl = `https://dood.re/e/${movie.movies}`;
+    const embedUrl = `${movie.movies}`;
     youtubeIframe.src = embedUrl;
     modalMovieTitle.innerText = `🎬 ${movie.title}`;
     modal.classList.add('active');
