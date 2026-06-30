@@ -345,9 +345,15 @@
   }
   
   function openVideoModal(movie) {
-    const embedUrl = `${movie.movies}`;
+    let embedUrl = movie.movies || '';
+    if (!embedUrl) return;
+    if (!/^https?:\/\//i.test(embedUrl)) {
+      embedUrl = `https://dood.re/e/${embedUrl}`;
+    }
     youtubeIframe.src = embedUrl;
-    modalMovieTitle.innerText = `🎬 ${movie.title}`;
+    youtubeIframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    youtubeIframe.allowFullscreen = true;
+    modalMovieTitle.innerText = movie.title || 'Memutar Film';
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
