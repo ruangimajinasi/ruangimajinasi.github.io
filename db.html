@@ -6,113 +6,7 @@
   <title>Ruang Imajinasi | Database</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="assets/css/app.css">
-  <style>
-    .floating-btn.page-switch {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.6rem;
-      width: auto;
-      height: auto;
-      padding: 0.6rem;
-      border-radius: 1rem;
-      background: rgba(11, 15, 28, 0.9);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
-      backdrop-filter: blur(8px);
-    }
-
-    .floating-btn.page-switch .tab-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      padding: 0;
-      border-radius: 0.8rem;
-      background: rgba(255, 255, 255, 0.06);
-      color: #f2f5fb;
-      text-decoration: none;
-      border: 1px solid rgba(255, 145, 66, 0.18);
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    .floating-btn.page-switch .tab-btn.active,
-    .floating-btn.page-switch .tab-btn:hover {
-      background: #ff9142;
-      color: #0b0f1c;
-      border-color: #ff9142;
-    }
-
-    .section-title {
-      margin-top: 0.25rem;
-    }
-
-    .toolbar-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .items-per-page {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(20, 28, 40, 0.6);
-      padding: 0.35rem 0.75rem;
-      border-radius: 999px;
-      flex-wrap: wrap;
-    }
-
-    .items-per-page label {
-      margin: 0;
-      font-size: 0.75rem;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .items-per-page select {
-      min-width: 3.8rem;
-      background: #1e2637;
-      border: 1px solid var(--accent);
-      color: #ffd966;
-      padding: 0.3rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      outline: none;
-    }
-
-    .view-all {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.85rem;
-      color: #ffb86b;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    @media (max-width: 600px) {
-      .toolbar-actions {
-        flex-wrap: nowrap;
-        align-items: center;
-        gap: 0.6rem;
-      }
-
-      .items-per-page,
-      .view-all {
-        flex: 0 0 auto;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 <div class="container">
@@ -124,17 +18,17 @@
   <div class="navbar">
     <div class="logo">
       <h1>Ruang Imajinasi<span></span></h1>
-      <span>Database video terbaru</span>
+      <span>Streaming Video Bokep Terbaru</span>
     </div>
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Cari judul video...">
+      <input type="text" id="searchInput" placeholder="Cari bokep favoritmu...">
       <button id="searchBtn"><i class="fas fa-search"></i></button>
     </div>
   </div>
 
   <div class="section-title">
-    <h3><i class="fas fa-database"></i> Database Video</h3>
-    <div class="toolbar-actions">
+    <h3><i class="fas fa-film"></i> Database Bokep</h3>
+    <div style="display: flex; gap: 1rem; align-items: center;">
       <div class="items-per-page">
         <label><i class="fas fa-eye"></i> Tampil</label>
         <select id="limitSelect">
@@ -160,6 +54,67 @@
     </div>
   </footer>
 </div>
+
+<style>
+  #moviesGrid.movies-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  #moviesGrid.movies-grid .movie-cards.mobile-single-column {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  #moviesGrid.movies-grid .movie-cards.mobile-single-column .directory-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  #moviesGrid.movies-grid .movie-cards.mobile-single-column .directory-meta {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  #moviesGrid.movies-grid .movie-cards.mobile-single-column .movie-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  #moviesGrid.movies-grid .movie-cards.mobile-single-column .action-buttons {
+    flex-shrink: 0;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 600px) {
+    #moviesGrid.movies-grid {
+      grid-template-columns: 1fr !important;
+      gap: 0.9rem;
+    }
+
+    #moviesGrid.movies-grid .movie-cards.mobile-single-column {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    #moviesGrid.movies-grid .movie-cards.mobile-single-column .action-buttons {
+      width: auto;
+      justify-content: flex-end;
+      margin-top: 0;
+    }
+  }
+</style>
 
 <div id="videoModal" class="modal-video">
   <div class="modal-content">
@@ -228,7 +183,7 @@
 
     const cardsHTML = pageMovies.map(movie => {
       return `
-        <div class="movie-card directory-item" data-id="${movie.id}">
+        <div class="movie-cards mobile-single-column" data-id="${movie.id}">
           <div class="directory-main">
             <div class="directory-icon"><i class="fas fa-folder-open"></i></div>
             <div class="directory-meta">
