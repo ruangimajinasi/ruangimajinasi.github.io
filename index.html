@@ -62,6 +62,48 @@
   <link rel="apple-touch-icon" href="assets/img/apple-touh-icon.png">
   <title>Ruang Imajinasi | Update Koleksi Asupan Terbaru</title>
   <style>
+    .floating-btn.page-switch {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.6rem;
+      width: auto;
+      height: auto;
+      padding: 0.6rem;
+      border-radius: 1rem;
+      background: rgba(11, 15, 28, 0.9);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+      backdrop-filter: blur(8px);
+    }
+
+    .floating-btn.page-switch .tab-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border-radius: 0.8rem;
+      background: rgba(255, 255, 255, 0.06);
+      color: #f2f5fb;
+      text-decoration: none;
+      border: 1px solid rgba(255, 145, 66, 0.18);
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .floating-btn.page-switch .tab-btn.active,
+    .floating-btn.page-switch .tab-btn:hover {
+      background: #ff9142;
+      color: #0b0f1c;
+      border-color: #ff9142;
+    }
+
     .floating-btn {
       position: fixed;
       right: 20px;
@@ -88,15 +130,91 @@
     .floating-btn i {
       font-size: 1.2rem;
     }
+
+    .modal-video {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal-video.active {
+      display: flex;
+    }
+
+    .modal-content {
+      position: relative;
+      width: min(92vw, 1000px);
+      max-height: 90vh;
+      background: #0a0e1a;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 145, 66, 0.4);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #111827;
+      border-bottom: 1px solid #ff914230;
+    }
+
+    .modal-header h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #ffb86b;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    .close-modal:hover {
+      color: #ff9142;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
   </style>
   <!-- Google Fonts + Font Awesome CDN -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 
 <div class="container">
+  <div class="floating-btn page-switch" role="tablist" aria-label="Navigasi halaman">
+    <a class="tab-btn active" href="index.html" aria-current="page" aria-label="Beranda"><i class="fas fa-home"></i></a>
+    <a class="tab-btn" href="db.html" aria-label="Database"><i class="fas fa-database"></i></a>
+  </div>
+
   <div class="navbar">
     <div class="logo">
       <h1>Ruang Imajinasi<span style="color:#ff9142;"></span></h1>
@@ -139,10 +257,6 @@
 
   <!-- PAGINATION AREA -->
   <div id="paginationContainer" class="pagination-container"></div>
-
-  <a href="https://ruangimajinasi.github.io/db/index.html" class="floating-btn" aria-label="Buka database" target="_blank" rel="noopener noreferrer">
-    <i class="fas fa-play"></i>
-  </a>
 
   <footer>
     <div class="container text-center">
@@ -223,13 +337,13 @@
       const imgSrc = movie.image && movie.image.trim() !== "" ? movie.image : "https://placehold.co/600x900/252f3f/FFB347?text=NO+POSTER";
       
       cardsHTML += `
-        <div class="movie-card" onclick="ads()" data-id="${movie.id}">
+        <div class="movie-card" data-id="${movie.id}">
           <div class="card-img">
             <img src="${imgSrc}" alt="${movie.title}" loading="lazy" onerror="this.src='https://placehold.co/600x900/252f3f/FFB347?text=NO+POSTER'">
             <div class="card-content">
               <div class="movie-title">${escapeHtml(movie.title)}</div>
               <div class="action-buttons">
-                <button class="btn-watch watch-btn" data-id="${movie.id}"><i class="fas fa-play"></i> Tonton</button>
+                <button class="btn-watch watch-btn" onclick="ads()" data-id="${movie.id}"><i class="fas fa-play"></i> Tonton</button>
                 <button class="bookmark" data-id="${movie.id}"><i class="far fa-bookmark"></i></button>
               </div>
             </div>
