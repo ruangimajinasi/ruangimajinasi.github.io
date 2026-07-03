@@ -1,47 +1,6 @@
 var ads = function(){
 var link_ads =
-[
-  'https://s.shopee.co.id/2VhJcY5zuC', 
-  'https://s.shopee.co.id/2LNtQF6dFB', 
-  'https://s.shopee.co.id/2B4TDw7GaA', 
-  'https://s.shopee.co.id/20l31d7tv9', 
-  'https://s.shopee.co.id/1qRcpK8XG8', 
-  'https://s.shopee.co.id/1g8Cd19Ab7', 
-  'https://s.shopee.co.id/1VomQi9nw6', 
-  'https://s.shopee.co.id/1LVMEPARH5', 
-  'https://s.shopee.co.id/3qChD00vCa', 
-  'https://s.shopee.co.id/3ftH0h1YXZ', 
-  'https://s.shopee.co.id/3VZqoO2BsY', 
-  'https://s.shopee.co.id/3LGQc52pDX', 
-  'https://s.shopee.co.id/3Ax0Pm3SYW', 
-  'https://s.shopee.co.id/30daDT45tV', 
-  'https://s.shopee.co.id/2qKA1A4jEU', 
-  'https://s.shopee.co.id/2g0jor5MZT', 
-  'https://s.shopee.co.id/5Ai4nRvqUy', 
-  'https://s.shopee.co.id/50Oeb8wTpx', 
-  'https://s.shopee.co.id/4q5EOpx7Aw', 
-  'https://s.shopee.co.id/4floCWxkVv', 
-  'https://s.shopee.co.id/4VSO0DyNqu', 
-  'https://s.shopee.co.id/4L8xnuz1Bt', 
-  'https://s.shopee.co.id/4ApXbbzeWs', 
-  'https://s.shopee.co.id/40W7PJ0Hrr', 
-  'https://s.shopee.co.id/6VDSNtqlnM', 
-  'https://s.shopee.co.id/6Ku2BarP8L', 
-  'https://s.shopee.co.id/6AabzHs2TK', 
-  'https://s.shopee.co.id/60HBmysfoJ', 
-  'https://s.shopee.co.id/5pxlaftJ9I', 
-  'https://s.shopee.co.id/5feLOMtwUH', 
-  'https://s.shopee.co.id/5VKvC3uZpG', 
-  'https://s.shopee.co.id/5L1UzkvDAF', 
-  'https://s.shopee.co.id/7pipyLlh5k', 
-  'https://s.shopee.co.id/7fPPm2mKQj', 
-  'https://s.shopee.co.id/7V5zZjmxli', 
-  'https://s.shopee.co.id/7KmZNQnb6h', 
-  'https://s.shopee.co.id/7AT9B7oERg', 
-  'https://s.shopee.co.id/709iyoormf', 
-  'https://s.shopee.co.id/6pqImVpV7e', 
-  'https://s.shopee.co.id/6fWsaCq8Sd',
-]
+['https://s.shopee.co.id/6VLyubwv4e','https://s.shopee.co.id/6L2YiIxYPd','https://s.shopee.co.id/6Aj8VzyBkc','https://s.shopee.co.id/60PiJgyp5b','https://s.shopee.co.id/7AbfhpuNiq','https://s.shopee.co.id/70IFVWv13p','https://s.shopee.co.id/6pypJDveOo','https://s.shopee.co.id/6ffP6uwHjn','https://s.shopee.co.id/7prMV3rqN2','https://s.shopee.co.id/7fXwIksTi1','https://s.shopee.co.id/7VEW6Rt730','https://s.shopee.co.id/7Kv5u8tkNz','https://s.shopee.co.id/8V73IHpJ1E','https://s.shopee.co.id/8Knd5ypwMD','https://s.shopee.co.id/8AUCtfqZhC','https://s.shopee.co.id/80AmhMrD2B','https://s.shopee.co.id/9AMk5VmlfQ','https://s.shopee.co.id/903JtCnP0P','https://s.shopee.co.id/8pjtgto2LO','https://s.shopee.co.id/8fQTUaofgN','https://s.shopee.co.id/9pcQsjkEJc','https://s.shopee.co.id/9fJ0gQkreb','https://s.shopee.co.id/9UzaU7lUza','https://s.shopee.co.id/9KgAHom8KZ','https://s.shopee.co.id/AUs7fxhgxo','https://s.shopee.co.id/AKYhTeiKIn','https://s.shopee.co.id/AAFHHLixdm','https://s.shopee.co.id/9zvr52jayl','https://s.shopee.co.id/W4llaJlFw','https://s.shopee.co.id/LlLZHKOav','https://s.shopee.co.id/BRvMyL1vu','https://s.shopee.co.id/18VAfLfGt','https://s.shopee.co.id/1BKSYoHDu8','https://s.shopee.co.id/1112MVHrF7','https://s.shopee.co.id/qhcACIUa6','https://s.shopee.co.id/gOBxtJ7v5','https://s.shopee.co.id/1qa9M2EgYK','https://s.shopee.co.id/1gGj9jFJtJ','https://s.shopee.co.id/1VxIxQFxEI','https://s.shopee.co.id/1Ldsl7GaZH','https://s.shopee.co.id/2Vpq9GC9CW','https://s.shopee.co.id/2LWPwxCmXV','https://s.shopee.co.id/2BCzkeDPsU','https://s.shopee.co.id/20tZYLE3DT','https://s.shopee.co.id/3B5WwU9bqi','https://s.shopee.co.id/30m6kBAFBh','https://s.shopee.co.id/2qSgXsAsWg','https://s.shopee.co.id/2g9GLZBVrf','https://s.shopee.co.id/3qLDji74Uu','https://s.shopee.co.id/3g1nXP7hpt','https://s.shopee.co.id/3ViNL68LAs','https://s.shopee.co.id/3LOx8n8yVr','https://s.shopee.co.id/4VauWw4X96','https://s.shopee.co.id/4LHUKd5AU5','https://s.shopee.co.id/4Ay48K5np4','https://s.shopee.co.id/40edw16RA3','https://s.shopee.co.id/5AqbKA1znI','https://s.shopee.co.id/50XB7r2d8H','https://s.shopee.co.id/4qDkvY3GTG','https://s.shopee.co.id/4fuKjF3toF','https://s.shopee.co.id/5fmrv505mS','https://s.shopee.co.id/5q6I7NzSRV','https://s.shopee.co.id/5LA1WT1MSQ','https://s.shopee.co.id/5VTRim0j7T','https://s.shopee.co.id/6L2YiIxYQe','https://s.shopee.co.id/6VLyubwv5h','https://s.shopee.co.id/60PiJgyp6c','https://s.shopee.co.id/6Aj8VzyBlf','https://s.shopee.co.id/70IFVWv14q','https://s.shopee.co.id/7AbfhpuNjt','https://s.shopee.co.id/6ffP6uwHko','https://s.shopee.co.id/6pypJDvePr','https://s.shopee.co.id/7fXwIksTj2','https://s.shopee.co.id/7prMV3rqO5','https://s.shopee.co.id/7Kv5u8tkP0','https://s.shopee.co.id/7VEW6Rt743','https://s.shopee.co.id/8Knd5ypwNE','https://s.shopee.co.id/8V73IHpJ2H','https://s.shopee.co.id/80AmhMrD3C','https://s.shopee.co.id/8AUCtfqZiF','https://s.shopee.co.id/903JtCnP1Q','https://s.shopee.co.id/9AMk5VmlgT','https://s.shopee.co.id/8fQTUaofhO','https://s.shopee.co.id/8pjtgto2MR','https://s.shopee.co.id/9fJ0gQkrfc','https://s.shopee.co.id/9pcQsjkEKf','https://s.shopee.co.id/9KgAHom8La','https://s.shopee.co.id/9UzaU7lV0d','https://s.shopee.co.id/AKYhTeiKJo','https://s.shopee.co.id/AUs7fxhgyr','https://s.shopee.co.id/9zvr52jazm','https://s.shopee.co.id/AAFHHLixep','https://s.shopee.co.id/LlLZHKObw','https://s.shopee.co.id/W4llaJlGz','https://s.shopee.co.id/18VAfLfHu','https://s.shopee.co.id/BRvMyL1wx','https://s.shopee.co.id/1112MVHrG8','https://s.shopee.co.id/1BKSYoHDvB','https://s.shopee.co.id/gOBxtJ7w6']
 var max_ads = (link_ads.length)
 window.open(link_ads[Math.floor(Math.random()*max_ads)]);
 };
