@@ -73,6 +73,82 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
   <style>
+    .offcanvas-panel {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 99999;
+      background: rgba(0,0,0,0.85);
+      align-items: flex-end;
+      animation: fadeIn 0.25s ease;
+    }
+    .offcanvas-panel.active {
+      display: flex;
+    }
+    .offcanvas-panel .offcanvas-content {
+      width: 100%;
+      height: 60%;
+      background: #0a0e1a;
+      border-top: 1px solid rgba(255,145,66,0.3);
+      overflow-y: auto;
+      animation: slideInUp 0.3s ease;
+      border-radius: 20px 20px 0 0;
+    }
+    .offcanvas-panel .offcanvas-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem;
+      background: #111827;
+      border-bottom: 1px solid rgba(255,145,66,0.2);
+    }
+    .offcanvas-panel .offcanvas-header h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffb86b;
+    }
+    .offcanvas-panel .close-offcanvas {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    .offcanvas-panel .close-offcanvas:hover {
+      color: #ff9142;
+    }
+    .offcanvas-panel .offcanvas-body {
+      padding: 1.2rem;
+    }
+    .d-none { display: none !important; }
+    @keyframes slideInUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    @media (max-width: 480px) {
+      .section-title {
+        width: 90%;
+        max-width: 90%;
+        overflow: hidden;
+      }
+      .section-title > div {
+        width: 100%;
+        max-width: 100%;
+      }
+      .section-title .data-tabs {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+      .section-title .data-tabs .tab-ds {
+        flex: 1;
+        justify-content: center;
+        font-size: 0.7rem !important;
+        padding: 0.3rem 0.5rem !important;
+      }
+    }
     @media (max-width: 600px) {
       #moviesGrid.db-active {
         grid-template-columns: 1fr !important;
@@ -107,6 +183,10 @@
 </head>
 <body>
 
+<a href="#" class="pesan" id="requestBtn" style="position:fixed; left:20px; bottom:20px; z-index:9999; display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,#ff9142,#ff6b6b); color:#fff; box-shadow:0 8px 20px rgba(255,107,107,0.35); text-decoration:none; transition:transform 0.2s ease,box-shadow 0.2s ease;">
+  <i class="fa fa-envelope" style="font-size:1.2rem;"></i>
+</a>
+
 <div class="container">
   <div class="navbar">
     <div class="logo">
@@ -137,8 +217,8 @@
     <h3><i class="fas fa-film"></i> Koleksi Bokep Terbaru</h3>
     <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
       <div class="data-tabs" style="display:inline-flex; gap:0.25rem; background:rgba(20,28,40,0.6); padding:0.25rem; border-radius:40px;">
-        <button class="tab-ds active" data-source="movies" style="background:#ff9142; color:#0b0f1c; border:none; padding:0.35rem 1rem; border-radius:40px; font-size:0.78rem; font-weight:600; cursor:pointer; transition:0.2s; display:inline-flex; align-items:center; gap:0.4rem;"><i class="fas fa-film"></i> Bokep</button>
-        <button class="tab-ds" data-source="db" style="background:transparent; color:#b9c3da; border:none; padding:0.35rem 1rem; border-radius:40px; font-size:0.78rem; font-weight:600; cursor:pointer; transition:0.2s; display:inline-flex; align-items:center; gap:0.4rem;"><i class="fas fa-database"></i> Database</button>
+        <button class="tab-ds active" data-source="movies" style="background:#ff9142; color:#0b0f1c; border:none; padding:0.35rem 1rem; border-radius:40px; font-size:0.78rem; font-weight:600; cursor:pointer; transition:0.2s; display:inline-flex; align-items:center; gap:0.4rem;"><i class="fas fa-film"></i> BOKEP</button>
+        <button class="tab-ds" data-source="db" style="background:transparent; color:#b9c3da; border:none; padding:0.35rem 1rem; border-radius:40px; font-size:0.78rem; font-weight:600; cursor:pointer; transition:0.2s; display:inline-flex; align-items:center; gap:0.4rem;"><i class="fas fa-database"></i> DB</button>
       </div>
       <div class="items-per-page">
         <label><i class="fas fa-eye"></i> Tampil</label>
@@ -167,6 +247,29 @@
   </footer>
 </div>
 
+<!-- OFFCANVAS LAPOR LINK RUSAK -->
+<div id="request" class="offcanvas-panel">
+  <div class="offcanvas-content">
+    <div class="offcanvas-header">
+      <h3><i class="fas fa-bug"></i> Lapor Admin</h3>
+      <button class="close-offcanvas" id="closeOffcanvasBtn">&times;</button>
+    </div>
+    <div class="offcanvas-body">
+      <form name="ruang-imajinasi-form" id="requestForm">
+        <div class="my-alert d-none" style="background:rgba(255,145,66,0.15); color:#ffb86b; padding:0.8rem; border-radius:12px; margin-bottom:1rem; text-align:center; font-size:0.85rem;">
+          <i class="fas fa-check-circle"></i> Terima kasih! Laporan sudah dikirim.
+        </div>
+        <div style="margin-bottom:1.2rem;">
+          <label style="display:block; font-size:0.8rem; color:#b9c3da; margin-bottom:0.4rem;">Pesan</label>
+          <textarea name="pesan" rows="3" required style="width:100%; padding:0.7rem 0.9rem; border-radius:12px; border:1px solid rgba(255,145,66,0.3); background:rgba(20,28,40,0.8); color:#fff; font-size:0.9rem; outline:none; resize:vertical; font-family:inherit;" placeholder="Tulis pesan anda..."></textarea>
+        </div>
+        <button type="submit" class="btn-kirim" style="width:100%; padding:0.75rem; border:none; border-radius:40px; background:#ff9142; color:#0b0f1c; font-size:0.95rem; font-weight:700; cursor:pointer; transition:0.2s;"><i class="fas fa-paper-plane"></i> Kirim</button>
+        <button type="button" class="btn-loading d-none" style="width:100%; padding:0.75rem; border:none; border-radius:40px; background:rgba(255,145,66,0.5); color:#0b0f1c; font-size:0.95rem; font-weight:700; cursor:not-allowed;" disabled><i class="fas fa-spinner fa-pulse"></i> Mengirim...</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL VIDEO -->
 <div id="videoModal" class="modal-video">
   <div class="modal-content">
@@ -183,6 +286,52 @@
 
 <script src="assets/data/ads.js"></script>
 <script src="https://pl17545679.effectivecpmnetwork.com/e4/4f/56/e44f562bfe19025bf50258a3df9a8d2c.js"></script>
+
+<script>
+  // Offcanvas toggle
+  const requestPanel = document.getElementById('request');
+  const requestBtn = document.getElementById('requestBtn');
+  const closeOffcanvasBtn = document.getElementById('closeOffcanvasBtn');
+
+  requestBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    requestPanel.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  function closeOffcanvas() {
+    requestPanel.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  closeOffcanvasBtn.addEventListener('click', closeOffcanvas);
+  requestPanel.addEventListener('click', (e) => { if (e.target === requestPanel) closeOffcanvas(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && requestPanel.classList.contains('active')) closeOffcanvas(); });
+</script>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzIOeOXHQhj6OFbZe9ote9oCOINTfrCwTJzboCkaBdIHtXA2xegCiK2VpKVKF7XqQCL/exec';
+    const form = document.forms['ruang-imajinasi-form'];
+    const btnKirim = document.querySelector('.btn-kirim');
+    const btnLoading = document.querySelector('.btn-loading');
+    const myAlert = document.querySelector('.my-alert');
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      btnLoading.classList.toggle('d-none');
+      btnKirim.classList.toggle('d-none');
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then((response) => {
+          btnLoading.classList.toggle('d-none');
+          btnKirim.classList.toggle('d-none');
+          myAlert.classList.toggle('d-none');
+          form.reset();
+          console.log('Success!', response);
+        })
+        .catch((error) => console.error('Error!', error.message));
+    });
+</script>
+
 <script>
   // ======================== GLOBAL VARIABLES ========================
   let moviesData = [];           // semua film dari JSON
