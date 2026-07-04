@@ -11,6 +11,13 @@
     gtag('js', new Date());
     gtag('config', 'G-S3QXESY0HT');
   </script>
+
+  <script type="text/javascript" data-cfasync="false">
+  /*<![CDATA[/* */
+  (function(){var v=window,e="cefe11932a4fb431ebc84a0134d5a911",t=[["siteId",546-103*144*445-962+11301085],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],w=["d3d3LmFudGlhZGJsb2Nrc3lzdGVtcy5jb20vemRhdGV0aW1lcGlja2VyLm1pbi5jc3M=","ZDNjb2Q4MHRobjdxbmQuY2xvdWRmcm9udC5uZXQvbS9iZ2xpZGUubWluLmpz","d3d3LmdpdXdpa3hsa25hLmNvbS9xZGF0ZXRpbWVwaWNrZXIubWluLmNzcw==","d3d3Lm9naGZjZ2hzci5jb20vbVBTcC9xZ2xpZGUubWluLmpz"],l=-1,p,f,h=function(){clearTimeout(f);l++;if(w[l]&&!(1809053392000<(new Date).getTime()&&1<l)){p=v.document.createElement("script");p.type="text/javascript";p.async=!0;var z=v.document.getElementsByTagName("script")[0];p.src="https://"+atob(w[l]);p.crossOrigin="anonymous";p.onerror=h;p.onload=function(){clearTimeout(f);v[e.slice(0,16)+e.slice(0,16)]||h()};f=setTimeout(h,5E3);z.parentNode.insertBefore(p,z)}};if(!v[e]){try{Object.freeze(v[e]=t)}catch(e){}h()}})();
+  /*]]>/* */
+  </script>
+
   <meta name="author" content="Ruang Imajinasi">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="publisher" content="Ruang Imajinasi">
@@ -65,18 +72,45 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    @media (max-width: 600px) {
+      #moviesGrid.db-active {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem;
+      }
+      #moviesGrid.db-active .movie-cards {
+        width: 100%;
+        min-width: 0;
+        padding: 0.75rem 0.85rem;
+        gap: 0.5rem;
+      }
+      #moviesGrid.db-active .movie-cards .directory-main {
+        min-width: 0;
+        flex: 1 1 auto;
+      }
+      #moviesGrid.db-active .movie-cards .directory-meta {
+        min-width: 0;
+        overflow: hidden;
+      }
+      #moviesGrid.db-active .movie-cards .movie-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+      }
+      #moviesGrid.db-active .movie-cards .action-buttons {
+        flex-shrink: 0;
+        margin-top: 0;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <div class="container">
-  <div class="floating-btn page-switch" role="tablist" aria-label="Navigasi halaman">
-    <a class="tab-btn active" href="index.html" aria-current="page" aria-label="Beranda"><i class="fas fa-home"></i></a>
-    <a class="tab-btn" href="db.html" aria-label="Database"><i class="fas fa-database"></i></a>
-  </div>
-
   <div class="navbar">
     <div class="logo">
-      <h1>Ruang Imajinasi<span style="color:#ff9142;"></span></h1>
+      <img src="assets/img/logo.png" alt="Ruang Imajinasi" style="height:40px; margin-left:-10px; margin-bottom:3px; width:auto;">
       <span>Streaming Video Bokep Terbaru</span>
     </div>
     <div class="search-bar">
@@ -85,18 +119,27 @@
     </div>
   </div>
 
-  <div class="filter-row" style="display: none;" id="filterContainer">
-    <div class="chip active" data-genre="all"><i class="fas fa-fire"></i> Semua</div>
-    <div class="chip" data-genre="viral"><i class="fas fa-fist-raised"></i> Viral</div>
-    <div class="chip" data-genre="indonesia"><i class="fas fa-theater-masks"></i> Indonesia</div>
-    <div class="chip" data-genre="barat"><i class="fas fa-rocket"></i> Barat</div>
-    <div class="chip" data-genre="jepang"><i class="fas fa-skull"></i> Jepang</div>
-    <div class="chip" data-genre="korea"><i class="fas fa-laugh-squint"></i> Korea</div>
+  <div style="display:flex; justify-content:center; margin-bottom:1.5rem;">
+    <script>
+      atOptions = {
+        'key' : 'cc5a24cfa3c20a82918f308c0e6a59ad',
+        'format' : 'iframe',
+        'height' : 50,
+        'width' : 320,
+        'params' : {}
+      };
+    </script>
+    <script src="https://www.highperformanceformat.com/cc5a24cfa3c20a82918f308c0e6a59ad/invoke.js"></script>
   </div>
+
 
   <div class="section-title">
     <h3><i class="fas fa-film"></i> Koleksi Bokep Terbaru</h3>
-    <div style="display: flex; gap: 1rem; align-items: center;">
+    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+      <div class="data-tabs" style="display:inline-flex; gap:0.25rem; background:rgba(20,28,40,0.6); padding:0.25rem; border-radius:40px;">
+        <button class="tab-ds active" data-source="movies" style="background:#ff9142; color:#0b0f1c; border:none; padding:0.35rem 1rem; border-radius:40px; font-size:0.78rem; font-weight:600; cursor:pointer; transition:0.2s; display:inline-flex; align-items:center; gap:0.4rem;"><i class="fas fa-film"></i> Bokep</button>
+        <button class="tab-ds" data-source="db" style="background:transparent; color:#b9c3da; border:none; padding:0.35rem 1rem; border-radius:40px; font-size:0.78rem; font-weight:600; cursor:pointer; transition:0.2s; display:inline-flex; align-items:center; gap:0.4rem;"><i class="fas fa-database"></i> Database</button>
+      </div>
       <div class="items-per-page">
         <label><i class="fas fa-eye"></i> Tampil</label>
         <select id="limitSelect">
@@ -139,6 +182,7 @@
 </div>
 
 <script src="assets/data/ads.js"></script>
+<script src="https://pl17545679.effectivecpmnetwork.com/e4/4f/56/e44f562bfe19025bf50258a3df9a8d2c.js"></script>
 <script>
   // ======================== GLOBAL VARIABLES ========================
   let moviesData = [];           // semua film dari JSON
@@ -148,9 +192,9 @@
   let currentPage = 1;
   let itemsPerPage = 12;          // default 9
   
-  // Filter state
-  let activeGenre = 'all';
+  // Search state
   let currentSearchQuery = '';
+  let currentSource = 'movies';
   
   // DOM elements
   const moviesGrid = document.getElementById('moviesGrid');
@@ -168,15 +212,12 @@
   // ======================== FUNGSI UTAMA ========================
   function applyFilters() {
     let result = [...moviesData];
-    if (activeGenre !== 'all') {
-      result = result.filter(movie => movie.genre === activeGenre);
-    }
     if (currentSearchQuery.trim() !== '') {
       const query = currentSearchQuery.trim().toLowerCase();
       result = result.filter(movie => movie.title.toLowerCase().includes(query));
     }
     filteredMovies = result;
-    currentPage = 1;   // reset ke halaman pertama saat filter berubah
+    currentPage = 1;
     renderPagination();
     renderCurrentPageMovies();
   }
@@ -189,65 +230,97 @@
     
     const startIdx = (currentPage - 1) * itemsPerPage;
     const endIdx = startIdx + itemsPerPage;
-    const pageMovies = [...filteredMovies].reverse().slice(startIdx, endIdx);
+    const pageMovies = currentSource === 'movies'
+      ? [...filteredMovies].reverse().slice(startIdx, endIdx)
+      : [...filteredMovies].slice(startIdx, endIdx);
     
-    let cardsHTML = '';
-    for (let movie of pageMovies) {
-      const imgSrc = movie.image && movie.image.trim() !== "" ? movie.image : "https://placehold.co/600x900/252f3f/FFB347?text=NO+POSTER";
-      
-      cardsHTML += `
-        <div class="movie-card" data-id="${movie.id}">
-          <div class="card-img">
-            <img src="${imgSrc}" alt="${movie.title}" loading="lazy" onerror="this.src='https://placehold.co/600x900/252f3f/FFB347?text=NO+POSTER'">
-            <div class="card-content">
-              <div class="movie-title">${escapeHtml(movie.title)}</div>
-              <div class="action-buttons">
-                <button class="btn-watch watch-btn" onclick="ads()" data-id="${movie.id}"><i class="fas fa-play"></i> Tonton</button>
-                <button class="bookmark" data-id="${movie.id}"><i class="far fa-bookmark"></i></button>
+    if (currentSource === 'movies') {
+      // ===== MOVIE CARD STYLE (from index.html) =====
+      let cardsHTML = '';
+      for (let movie of pageMovies) {
+        const imgSrc = movie.image && movie.image.trim() !== "" ? movie.image : "https://placehold.co/600x900/252f3f/FFB347?text=NO+POSTER";
+        
+        cardsHTML += `
+          <div class="movie-card" data-id="${movie.id}">
+            <div class="card-img">
+              <img src="${imgSrc}" alt="${movie.title}" loading="lazy" onerror="this.src='https://placehold.co/600x900/252f3f/FFB347?text=NO+POSTER'">
+              <div class="card-content">
+                <div class="movie-title">${escapeHtml(movie.title)}</div>
+                <div class="action-buttons">
+                  <button class="btn-watch watch-btn" onclick="ads()" data-id="${movie.id}"><i class="fas fa-play"></i> Tonton</button>
+                  <button class="bookmark" data-id="${movie.id}"><i class="far fa-bookmark"></i></button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      `;
+        `;
+      }
+      moviesGrid.innerHTML = cardsHTML;
+      
+      document.querySelectorAll('.watch-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const movies = parseInt(btn.dataset.id);
+          const movie = moviesData.find(m => m.id === movies);
+          if (movie) openVideoModal(movie);
+        });
+      });
+      document.querySelectorAll('.bookmark').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const movies = parseInt(btn.dataset.id);
+          const movie = moviesData.find(m => m.id === movies);
+          const icon = btn.querySelector('i');
+          if (icon.classList.contains('far')) {
+            icon.classList.remove('far');
+            icon.classList.add('fas');
+            icon.style.color = '#ff9142';
+            alert(`📌 ${movie.title} ditambahkan ke bookmark!`);
+          } else {
+            icon.classList.remove('fas');
+            icon.classList.add('far');
+            icon.style.color = '#aaaaee';
+            alert(`🗑️ ${movie.title} dihapus dari bookmark`);
+          }
+        });
+      });
+      document.querySelectorAll('.movie-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if(e.target.classList.contains('bookmark') || e.target.classList.contains('watch-btn') || e.target.closest('.bookmark') || e.target.closest('.watch-btn')) return;
+          const id = parseInt(card.dataset.id);
+          const movie = moviesData.find(m => m.id === id);
+          if(movie) openVideoModal(movie);
+        });
+      });
+    } else {
+      // ===== DB STYLE (from db.html) =====
+      const cardsHTML = pageMovies.map(movie => {
+        return `
+          <div class="movie-cards mobile-single-column" data-id="${movie.id}">
+            <div class="directory-main">
+              <div class="directory-icon"><i class="fas fa-folder-open"></i></div>
+              <div class="directory-meta">
+                <div class="movie-title">${escapeHtml(movie.title)}</div>
+                <div class="directory-subtitle">Ruang Imajinasi</div>
+              </div>
+            </div>
+            <div class="action-buttons">
+              <button class="btn-watch watch-btn" onclick="ads()" data-id="${movie.id}"><i class="fas fa-play"></i></button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      moviesGrid.innerHTML = cardsHTML;
+      
+      document.querySelectorAll('.watch-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = parseInt(btn.dataset.id);
+          const movie = moviesData.find(item => item.id === id);
+          if (movie) openVideoModal(movie);
+        });
+      });
     }
-    moviesGrid.innerHTML = cardsHTML;
-    
-    // Attach event listeners
-    document.querySelectorAll('.watch-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const movies = parseInt(btn.dataset.id);
-        const movie = moviesData.find(m => m.id === movies);
-        if (movie) openVideoModal(movie);
-      });
-    });
-    document.querySelectorAll('.bookmark').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const movies = parseInt(btn.dataset.id);
-        const movie = moviesData.find(m => m.id === movies);
-        const icon = btn.querySelector('i');
-        if (icon.classList.contains('far')) {
-          icon.classList.remove('far');
-          icon.classList.add('fas');
-          icon.style.color = '#ff9142';
-          alert(`📌 ${movie.title} ditambahkan ke bookmark!`);
-        } else {
-          icon.classList.remove('fas');
-          icon.classList.add('far');
-          icon.style.color = '#aaaaee';
-          alert(`🗑️ ${movie.title} dihapus dari bookmark`);
-        }
-      });
-    });
-    document.querySelectorAll('.movie-card').forEach(card => {
-      card.addEventListener('click', (e) => {
-        if(e.target.classList.contains('bookmark') || e.target.classList.contains('watch-btn') || e.target.closest('.bookmark') || e.target.closest('.watch-btn')) return;
-        const id = parseInt(card.dataset.id);
-        const movie = moviesData.find(m => m.id === id);
-        if(movie) openVideoModal(movie);
-      });
-    });
   }
   
   function renderPagination() {
@@ -318,7 +391,7 @@
   }
   
   function openVideoModal(movie) {
-    let embedUrl = movie.movies || '';
+    let embedUrl = currentSource === 'movies' ? (movie.movies || '') : (movie.link || '');
     if (!embedUrl) return;
     if (!/^https?:\/\//i.test(embedUrl)) {
       embedUrl = `https://dood.re/e/${embedUrl}`;
@@ -337,55 +410,75 @@
     document.body.style.overflow = '';
   }
   
-  // filter & search handlers
-  function setActiveGenre(genre) {
-    activeGenre = genre;
-    document.querySelectorAll('.chip').forEach(chip => {
-      if (chip.dataset.genre === genre) chip.classList.add('active');
-      else chip.classList.remove('active');
-    });
-    applyFilters();
-  }
-  
+  // search handlers
   function performSearch() {
     currentSearchQuery = searchInput.value;
     applyFilters();
   }
-  
+
   function resetAll() {
     searchInput.value = '';
     currentSearchQuery = '';
-    setActiveGenre('all');
+    applyFilters();
   }
   
-  function initFilters() {
-    document.querySelectorAll('.chip').forEach(chip => {
-      chip.addEventListener('click', () => setActiveGenre(chip.dataset.genre));
-    });
-  }
-  
-  // Load data dari movies.json
-  async function loadMoviesFromJSON() {
+  // Load data dari JSON
+  async function loadMoviesFromJSON(source) {
+    currentSource = source || 'movies';
+    moviesGrid.classList.toggle('db-active', currentSource === 'db');
+    const filename = currentSource === 'movies' ? 'movies.json' : 'db.json';
     try {
       moviesGrid.innerHTML = `<div class="loading-state"><i class="fas fa-spinner fa-pulse"></i> Menyiapkan data...</div>`;
-      const response = await fetch('./assets/data/movies.json');
+      const response = await fetch(`./assets/data/${filename}`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       if (Array.isArray(data) && data.length) {
-        moviesData = data;
+        if (currentSource === 'movies') {
+          moviesData = data;
+        } else {
+          moviesData = data.map((item, idx) => ({
+            id: item.id || idx + 1,
+            title: item.title || item.name || 'Tanpa judul',
+            link: item.link || item.url || item.download_url || '#',
+            image: item.image || ''
+          }));
+        }
       } else {
         throw new Error('Format JSON salah');
       }
     } catch (error) {
       console.error(error);
-      moviesGrid.innerHTML = `<div class="error-message"><i class="fas fa-database"></i> Gagal load movies.json. Pastikan file ada.</div>`;
+      moviesGrid.innerHTML = `<div class="error-message"><i class="fas fa-database"></i> Gagal load ${filename}. Pastikan file ada.</div>`;
       moviesData = [];
     } finally {
-      initFilters();
-      applyFilters(); // akan trigger render & pagination
+      currentSearchQuery = '';
+      searchInput.value = '';
+      applyFilters();
     }
   }
   
+  // Tab switching
+  document.querySelectorAll('.tab-ds').forEach(tab => {
+    tab.addEventListener('click', function() {
+      const source = this.dataset.source;
+      if (source === currentSource) return;
+      
+      document.querySelectorAll('.tab-ds').forEach(t => {
+        t.style.background = 'transparent';
+        t.style.color = '#b9c3da';
+      });
+      this.style.background = '#ff9142';
+      this.style.color = '#0b0f1c';
+      
+      document.querySelector('.section-title h3').innerHTML = source === 'movies'
+        ? '<i class="fas fa-film"></i> Koleksi Bokep Terbaru'
+        : '<i class="fas fa-database"></i> Database Bokep';
+      
+      moviesGrid.classList.toggle('db-active', source === 'db');
+      loadMoviesFromJSON(source);
+    });
+  });
+
   // Event Listeners
   closeModalBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
@@ -400,7 +493,7 @@
     renderCurrentPageMovies();
   });
   
-  loadMoviesFromJSON();
+  loadMoviesFromJSON('movies');
 </script>
 </body>
 </html>
