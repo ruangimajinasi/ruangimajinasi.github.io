@@ -225,12 +225,12 @@
         <button class="tab-ds" data-source="db" style="background:transparent; color:#b9c3da; border:none; padding:0.35rem 1rem; border-radius:40px; font-size:0.78rem; font-weight:600; cursor:pointer; transition:0.2s; display:inline-flex; align-items:center; gap:0.4rem;"><i class="fas fa-database"></i> DB</button>
       </div>
       <div class="items-per-page">
-        <label><i class="fas fa-eye"></i> On</label>
+        <label><i class="fas fa-eye"></i> Show</label>
         <select id="limitSelect">
-          <option value="6">6</option>
-          <option value="9">9</option>
-          <option value="12" selected>12</option>
-          <option value="18">18</option>
+          <option value="8">8</option>
+          <option value="12">12</option>
+          <option value="20">20</option>
+          <option value="28" selected>28</option>
         </select>
       </div>
       <div class="view-all" id="viewAllBtn"><i class="fas fa-undo-alt"></i></div>
@@ -343,7 +343,7 @@
   
   // Pagination state
   let currentPage = 1;
-  let itemsPerPage = 12;          // default 9
+  let itemsPerPage = 28;          // default 9
   
   // Search state
   let currentSearchQuery = '';
@@ -547,7 +547,7 @@
     let embedUrl = currentSource === 'movies' ? (movie.movies || '') : (movie.link || '');
     if (!embedUrl) return;
     if (!/^https?:\/\//i.test(embedUrl)) {
-      embedUrl = `https://dood.re/e/${embedUrl}`;
+      embedUrl = `https://playmogo.com/e/${embedUrl}`;
     }
     youtubeIframe.src = embedUrl;
     youtubeIframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
@@ -581,7 +581,7 @@
     moviesGrid.classList.toggle('db-active', currentSource === 'db');
     const filename = currentSource === 'movies' ? 'movies.json' : 'db.json';
     try {
-      moviesGrid.innerHTML = `<div class="loading-state"><i class="fas fa-spinner fa-pulse"></i> Menyiapkan data...</div>`;
+      moviesGrid.innerHTML = `<div class="loading-state"><i class="fas fa-spinner fa-pulse"></i> Loading...</div>`;
       const response = await fetch(`./assets/data/${filename}`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
