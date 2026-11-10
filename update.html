@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch DoodAPI - Update movies.json</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: monospace; background: #0a0e17; color: #b9c3da; padding: 2rem; min-height: 100vh; }
+    h1 { color: #ff9142; margin-bottom: 1rem; font-size: 1.2rem; }
+    .config { margin-bottom: 1.5rem; }
+    .config label { display: block; margin-bottom: 0.3rem; color: #7c88a2; }
+    .config input { width: 100%; max-width: 500px; padding: 0.5rem; background: #141c2c; border: 1px solid #2a3550; color: #b9c3da; border-radius: 6px; font-family: monospace; }
+    button { padding: 0.6rem 1.5rem; background: #ff9142; color: #0b0f1c; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-family: monospace; font-size: 0.9rem; }
+    button:hover { background: #ffad6b; }
+    button:disabled { background: #3a4560; color: #7c88a2; cursor: not-allowed; }
+    #log { margin-top: 1.5rem; background: #0f1624; border: 1px solid #2a3550; border-radius: 8px; padding: 1rem; max-height: 400px; overflow-y: auto; font-size: 0.8rem; line-height: 1.6; }
+    #log .ok { color: #4ade80; }
+    #log .err { color: #f87171; }
+    #log .info { color: #60a5fa; }
+    .result { margin-top: 1.5rem; }
+    .result textarea { width: 100%; height: 300px; background: #141c2c; border: 1px solid #2a3550; color: #b9c3da; border-radius: 8px; padding: 1rem; font-family: monospace; font-size: 0.75rem; resize: vertical; }
+    .btn-row { display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap; align-items: center; }
+    .count { color: #ff9142; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Fetch DoodAPI &rarr; movies.json</h1>
+  <div class="config">
+    <label>API Key</label>
+    <input type="text" id="apiKey" value="16770bnkv295dx86fqe0w">
+  </div>
+  <div class="btn-row">
+    <button id="fetchBtn" onclick="startFetch()">Fetch Semua Data</button>
+    <span id="status"></span>
+  </div>
+  <div id="log"></div>
+  <div class="result" id="resultArea" style="display:none">
+    <div class="btn-row">
+      <button onclick="copyToClipboard()">Copy ke Clipboard</button>
+      <button onclick="downloadFile()">Download movies.json</button>
+      <span class="count" id="totalCount"></span>
+    </div>
+    <textarea id="output" readonly></textarea>
+  </div>
+
+  <script>
+    const logEl = document.getElementById('log');
+    const statusEl = document.getElementById('status');
+    const fetchBtn = document.getElementById('fetchBtn');
+
+    function log(msg, cls) {
+      const d = document.createElement('div');
+      d.className = cls || '';
+      d.textContent = msg;
+      logEl.appendChild(d);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    async function fetchPage(url) {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    }
+
+    async function startFetch() {
+      const apiKey = document.getElementById('apiKey').value.trim();
+      if (!apiKey) { log('API Key kosong!', 'err'); return; }
+
+      fetchBtn.disabled = true;
+      logEl.innerHTML = '';
+      document.getElementById('resultArea').style.display = 'none';
+      statusEl.textContent = 'Fetching...';
+
+      try {
+        const baseUrl = `https://doodapi.co/api/file/list?key=${apiKey}&per_page=200`;
+        log('Fetching page 1...', 'info');
+        const first = await fetchPage(`${baseUrl}&page=1`);
+        const totalPages = first.result.total_pages || 1;
+        let allFiles = first.result.files || [];
+        log(`Page 1: ${allFiles.length} files (total pages: ${totalPages})`, 'ok');
+
+        for (let p = 2; p <= totalPages; p++) {
+          log(`Fetching page ${p}/${totalPages}...`, 'info');
+          const res = await fetchPage(`${baseUrl}&page=${p}`);
+          const files = res.result.files || [];
+          allFiles = allFiles.concat(files);
+          log(`Page ${p}: +${files.length} files (total: ${allFiles.length})`, 'ok');
+        }
+
+        allFiles.sort((a, b) => {
+          const da = a.uploaded || '', db = b.uploaded || '';
+          return da < db ? 1 : da > db ? -1 : 0;
+        });
+
+        const movies = allFiles.map((file, idx) => ({
+          id: idx + 1,
+          title: file.title || 'Tanpa judul',
+          movies: file.file_code || '',
+          image: file.single_img || ''
+        }));
+
+        const json = JSON.stringify(movies, null, 4);
+        document.getElementById('output').value = json;
+        document.getElementById('totalCount').textContent = `${movies.length} video`;
+        document.getElementById('resultArea').style.display = 'block';
+        log(`\nSelesai! ${movies.length} video siap.`, 'ok');
+        statusEl.textContent = 'Done!';
+      } catch (err) {
+        log(`Error: ${err.message}`, 'err');
+        statusEl.textContent = 'Gagal';
+      } finally {
+        fetchBtn.disabled = false;
+      }
+    }
+
+    function copyToClipboard() {
+      const ta = document.getElementById('output');
+      ta.select();
+      document.execCommand('copy');
+      statusEl.textContent = 'Copied!';
+    }
+
+    function downloadFile() {
+      const blob = new Blob([document.getElementById('output').value], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'movies.json';
+      a.click();
+    }
+  </script>
+</body>
+</html>
