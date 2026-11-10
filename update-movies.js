@@ -37,7 +37,9 @@ async function main() {
     id: idx + 1,
     title: file.title || 'Tanpa judul',
     movies: file.file_code || '',
-    image: file.single_img || ''
+    image: file.single_img || '',
+    duration: file.length || '',
+    views: file.views ?? ''
   }));
 
   const out = path.join(__dirname, 'assets', 'data', 'movies.json');
