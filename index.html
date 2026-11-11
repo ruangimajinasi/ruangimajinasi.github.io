@@ -130,27 +130,38 @@
       justify-self: center;
     }
     .bugil-gallery {
-      columns: 2;
-      column-gap: 0.75rem;
-      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
       padding: 0.5rem;
       margin: 0;
     }
-    .bugil-gallery > li {
-      display: inline-block;
+    .bugil-gallery-column {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      gap: 0.75rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .bugil-gallery-column > li {
       width: 100%;
-      margin: 0 0 0.75rem;
-      break-inside: avoid;
+      min-height: 3rem;
+      overflow: hidden;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.06);
     }
     .bugil-gallery img {
       display: block;
       width: 100%;
       height: auto;
+      aspect-ratio: auto 3 / 4;
       border-radius: 12px;
       cursor: pointer;
     }
-    .bugil-gallery .bugil-gallery-status {
-      column-span: all;
+    .bugil-gallery > .bugil-gallery-status {
+      grid-column: 1 / -1;
       display: flex;
       justify-content: center;
       width: 100%;
@@ -172,6 +183,76 @@
       font-size: 0.85rem;
       font-weight: 700;
       cursor: pointer;
+    }
+    .gallery-viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 110000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+      background: rgba(4, 6, 10, 0.96);
+      color: #fff;
+    }
+    .gallery-viewer.active { display: flex; }
+    .gallery-viewer-stage {
+      position: absolute;
+      inset: 4.5rem 4rem;
+      display: grid;
+      place-items: center;
+      overflow: auto;
+      touch-action: pan-x pan-y;
+    }
+    .gallery-viewer-image {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transform: scale(1);
+      transition: transform 160ms ease;
+      cursor: zoom-in;
+    }
+    .gallery-viewer-image.zoomed { cursor: zoom-out; }
+    .gallery-viewer-topbar {
+      position: absolute;
+      z-index: 1;
+      top: max(0.75rem, env(safe-area-inset-top));
+      left: max(0.75rem, env(safe-area-inset-left));
+      right: max(0.75rem, env(safe-area-inset-right));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .gallery-viewer-tools { display: flex; align-items: center; gap: 0.5rem; }
+    .gallery-viewer button {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      font: inherit;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .gallery-viewer-count { min-width: 4.5rem; text-align: center; color: rgba(255,255,255,0.85); font-size: 0.9rem; }
+    .gallery-viewer-nav {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .gallery-viewer-prev { left: max(0.75rem, env(safe-area-inset-left)); }
+    .gallery-viewer-next { right: max(0.75rem, env(safe-area-inset-right)); }
+    @media (max-width: 600px) {
+      .gallery-viewer-stage { inset: 4rem 0.5rem; }
+      .gallery-viewer-nav { top: auto; bottom: max(1rem, env(safe-area-inset-bottom)); transform: none; }
+      .gallery-viewer-prev { left: max(1rem, env(safe-area-inset-left)); }
+      .gallery-viewer-next { right: max(1rem, env(safe-area-inset-right)); }
     }
     .audio-card {
       display: flex;
@@ -340,8 +421,8 @@
       height: 100%;
       border: 0;
     }
-    @media (min-width: 600px) { .bugil-gallery { columns: 3; column-gap: 1rem; } }
-    @media (min-width: 900px) { .bugil-gallery { columns: 4; } }
+    @media (min-width: 600px) { .bugil-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; } }
+    @media (min-width: 900px) { .bugil-gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
     @keyframes slideInUp {
       from { transform: translateY(100%); }
       to { transform: translateY(0); }
@@ -539,10 +620,24 @@
   </div>
 
   <section id="bugilSection" class="d-none">
-    <ul id="infinite-list" class="bugil-gallery">
-      <li class="bugil-gallery-status loading-state"><i class="fas fa-spinner fa-pulse" aria-label="Memuat galeri"></i></li>
-    </ul>
+    <div id="infinite-list" class="bugil-gallery">
+      <div class="bugil-gallery-status loading-state"><i class="fas fa-spinner fa-pulse" aria-label="Memuat galeri"></i></div>
+    </div>
   </section>
+
+  <div id="galleryViewer" class="gallery-viewer" role="dialog" aria-modal="true" aria-label="Penampil foto galeri">
+    <div class="gallery-viewer-topbar">
+      <div id="galleryViewerCount" class="gallery-viewer-count" aria-live="polite"></div>
+      <div class="gallery-viewer-tools">
+        <button id="galleryZoomOut" type="button" aria-label="Perkecil foto" title="Perkecil">−</button>
+        <button id="galleryZoomIn" type="button" aria-label="Perbesar foto" title="Perbesar">+</button>
+        <button id="galleryViewerClose" type="button" aria-label="Tutup foto" title="Tutup">×</button>
+      </div>
+    </div>
+    <button id="galleryViewerPrev" class="gallery-viewer-nav gallery-viewer-prev" type="button" aria-label="Foto sebelumnya">‹</button>
+    <div class="gallery-viewer-stage"><img id="galleryViewerImage" class="gallery-viewer-image" alt="Foto galeri"></div>
+    <button id="galleryViewerNext" class="gallery-viewer-nav gallery-viewer-next" type="button" aria-label="Foto berikutnya">›</button>
+  </div>
 
   <!-- PAGINATION AREA -->
   <div id="paginationContainer" class="pagination-container"></div>
@@ -645,6 +740,7 @@
   
   // Pagination state
   let currentPage = 1;
+  let moviesInitialOrderShuffled = false;
   let itemsPerPage = 20;          // default 20
   
   // Search state
@@ -666,6 +762,13 @@
   
   // ======================== FUNGSI UTAMA ========================
   function applyFilters() {
+    if (currentSource === 'movies' && !moviesInitialOrderShuffled) {
+      for (let i = moviesData.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [moviesData[i], moviesData[j]] = [moviesData[j], moviesData[i]];
+      }
+      moviesInitialOrderShuffled = true;
+    }
     let result = [...moviesData];
     if (currentSearchQuery.trim() !== '') {
       const query = currentSearchQuery.trim().toLowerCase();
@@ -676,7 +779,12 @@
     renderPagination();
     renderCurrentPageMovies();
   }
-  
+
+  const underageTitlePattern = /\b(?:anak(?:\s+(?:di\s+bawah\s+umur|kecil|sekolah))?|bocil|bocah|balita|bayi|abg|remaja|teen(?:ager)?|minor|underage|smp|sma|smk|sd|siswi|siswa|murid|pelajar|santri|sekolah|schoolgirl|schoolboy|child(?:ren)?|12\s*-\s*17\s*(?:tahun|yo|y\.?o\.?)?|1[0-7]\s*tahun)\b/i;
+  function hasUnderageTitle(item) {
+    return underageTitlePattern.test(String(item.title || item.name || ''));
+  }
+
   function renderCurrentPageMovies() {
     moviesGrid.querySelectorAll('audio').forEach((audio) => { audio.pause(); audio.currentTime = 0; });
     if (!filteredMovies.length) {
@@ -923,6 +1031,7 @@
   // Load data dari JSON
   async function loadMoviesFromJSON(source) {
     currentSource = source || 'movies';
+    if (currentSource === 'movies') moviesInitialOrderShuffled = false;
     moviesGrid.classList.toggle('db-active', currentSource === 'db');
     moviesGrid.classList.toggle('audio-grid', currentSource === 'desah');
     const filename = currentSource === 'movies' ? 'movies.json' : currentSource === 'desah' ? 'desah.json' : 'db.json';
@@ -938,7 +1047,7 @@
             id: item.id || idx + 1,
             title: item.title || item.name || 'Tanpa judul',
             audioUrl: toAudioUrl(item.audioUrl || item.url || item.link || item.download_url || '')
-          })) : data;
+          })) : data.filter((item) => !hasUnderageTitle(item));
         } else {
           moviesData = data.map((item, idx) => ({
             id: item.id || idx + 1,
@@ -978,25 +1087,96 @@
   let bugilPhotos = null;
   let bugilLoading = false;
   let bugilIndex = 0;
+  let galleryViewerIndex = 0;
+  let galleryZoom = 1;
+  const galleryViewer = document.getElementById('galleryViewer');
+  const galleryViewerImage = document.getElementById('galleryViewerImage');
+  function renderGalleryViewer() {
+    if (!bugilPhotos?.length) return;
+    galleryViewerIndex = (galleryViewerIndex + bugilPhotos.length) % bugilPhotos.length;
+    galleryZoom = 1;
+    galleryViewerImage.src = bugilPhotos[galleryViewerIndex].link;
+    galleryViewerImage.alt = `Foto ${galleryViewerIndex + 1} dari ${bugilPhotos.length}`;
+    galleryViewerImage.style.transform = 'scale(1)';
+    galleryViewerImage.classList.remove('zoomed');
+    document.getElementById('galleryViewerCount').textContent = `${galleryViewerIndex + 1} / ${bugilPhotos.length}`;
+  }
+  function openGalleryViewer(index) {
+    galleryViewerIndex = index;
+    renderGalleryViewer();
+    galleryViewer.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('galleryViewerClose').focus();
+  }
+  function closeGalleryViewer() {
+    galleryViewer.classList.remove('active');
+    galleryViewerImage.src = '';
+    document.body.style.overflow = '';
+  }
+  function setGalleryZoom(value) {
+    galleryZoom = Math.min(3, Math.max(1, value));
+    galleryViewerImage.style.transform = `scale(${galleryZoom})`;
+    galleryViewerImage.classList.toggle('zoomed', galleryZoom > 1);
+  }
+
+  function getBugilColumnHeight(column) {
+    const items = [...column.children];
+    const gap = parseFloat(getComputedStyle(column).rowGap) || 0;
+    return items.reduce((height, item) => height + item.getBoundingClientRect().height, 0)
+      + Math.max(0, items.length - 1) * gap;
+  }
+
+  function getBugilColumns(list) {
+    const columnCount = window.matchMedia('(min-width: 900px)').matches ? 4
+      : window.matchMedia('(min-width: 600px)').matches ? 3 : 2;
+    let columns = [...list.querySelectorAll('.bugil-gallery-column')];
+    if (columns.length !== columnCount) {
+      const items = columns.flatMap((column) => [...column.children]);
+      columns = Array.from({ length: columnCount }, () => {
+        const column = document.createElement('ul');
+        column.className = 'bugil-gallery-column';
+        column.setAttribute('aria-label', 'Kolom galeri');
+        return column;
+      });
+      list.replaceChildren(...columns);
+      items.forEach((item) => {
+        const target = columns.reduce((shortest, column) =>
+          getBugilColumnHeight(column) < getBugilColumnHeight(shortest) ? column : shortest
+        );
+        target.appendChild(item);
+      });
+    }
+    return columns;
+  }
+
   function appendBugilBatch() {
     const list = document.getElementById('infinite-list');
     const oldStatus = list.querySelector('.bugil-gallery-status');
     if (oldStatus) oldStatus.remove();
 
+    const columns = getBugilColumns(list);
     const batchSize = 20;
     const batch = bugilPhotos.slice(bugilIndex, bugilIndex + batchSize);
+    const batchStart = bugilIndex;
     bugilIndex += batch.length;
-    batch.forEach((photo) => {
+    batch.forEach((photo, photoOffset) => {
       const item = document.createElement('li');
+      item.dataset.photoIndex = String(batchStart + photoOffset);
       const image = document.createElement('img');
       image.src = photo.link;
       image.alt = 'Koleksi foto';
       image.loading = 'lazy';
       image.decoding = 'async';
-      image.addEventListener('click', () => { if (typeof ads === 'function') ads(); });
+      image.addEventListener('click', () => {
+        if (typeof ads === 'function') ads();
+        openGalleryViewer(Number(item.dataset.photoIndex));
+      });
       image.onerror = () => item.remove();
       item.appendChild(image);
-      list.appendChild(item);
+      const target = columns.reduce((shortest, column) =>
+        getBugilColumnHeight(column) < getBugilColumnHeight(shortest) ? column : shortest
+      );
+      target.appendChild(item);
     });
 
     if (bugilIndex < bugilPhotos.length) {
@@ -1094,6 +1274,34 @@
   closeModalBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
+  document.getElementById('galleryViewerClose').addEventListener('click', closeGalleryViewer);
+  document.getElementById('galleryViewerPrev').addEventListener('click', () => { galleryViewerIndex--; renderGalleryViewer(); });
+  document.getElementById('galleryViewerNext').addEventListener('click', () => { galleryViewerIndex++; renderGalleryViewer(); });
+  document.getElementById('galleryZoomIn').addEventListener('click', () => setGalleryZoom(galleryZoom + 0.5));
+  document.getElementById('galleryZoomOut').addEventListener('click', () => setGalleryZoom(galleryZoom - 0.5));
+  galleryViewerImage.addEventListener('click', () => setGalleryZoom(galleryZoom > 1 ? 1 : 2));
+  galleryViewer.addEventListener('click', (e) => { if (e.target === galleryViewer) closeGalleryViewer(); });
+  let galleryTouchStart = null;
+  document.querySelector('.gallery-viewer-stage').addEventListener('touchstart', (e) => {
+    galleryTouchStart = e.changedTouches[0]?.clientX ?? null;
+  }, { passive: true });
+  document.querySelector('.gallery-viewer-stage').addEventListener('touchend', (e) => {
+    if (galleryTouchStart === null || galleryZoom > 1) return;
+    const delta = e.changedTouches[0].clientX - galleryTouchStart;
+    if (Math.abs(delta) > 60) {
+      galleryViewerIndex += delta < 0 ? 1 : -1;
+      renderGalleryViewer();
+    }
+    galleryTouchStart = null;
+  }, { passive: true });
+  document.addEventListener('keydown', (e) => {
+    if (!galleryViewer.classList.contains('active')) return;
+    if (e.key === 'Escape') closeGalleryViewer();
+    if (e.key === 'ArrowLeft') { galleryViewerIndex--; renderGalleryViewer(); }
+    if (e.key === 'ArrowRight') { galleryViewerIndex++; renderGalleryViewer(); }
+    if (e.key === '+' || e.key === '=') setGalleryZoom(galleryZoom + 0.5);
+    if (e.key === '-') setGalleryZoom(galleryZoom - 0.5);
+  });
   searchBtn.addEventListener('click', performSearch);
   searchInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') performSearch(); });
   viewAllBtn.addEventListener('click', resetAll);
